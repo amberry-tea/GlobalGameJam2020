@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 874724676}
   - component: {fileID: 874724678}
   - component: {fileID: 874724679}
+  - component: {fileID: 874724680}
   m_Layer: 0
   m_Name: Player Jam
   m_TagString: Untagged
@@ -381,9 +382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75fd532e3132514497b9de8ab4e0955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 874724680}
   speed: 5
-  jumpHeight: 0
+  jumpHeight: 3
   gravity: 9.8
   gravityCap: -255
   isActive: 1
@@ -402,9 +403,28 @@ CharacterController:
   m_Radius: 0.12
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &874724680
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874724675}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9533ad329215fd4582d4711adb6a755, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1626702434
 GameObject:
   m_ObjectHideFlags: 0
