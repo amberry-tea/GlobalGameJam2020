@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	// Frame update.
     void Update() {
 		
-		animator.SetFloat("Speed", Mathf.Abs(Input.GetInputRaw("Horizontal")));
+		animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
 		
 		ray = Physics2D.Raycast(transform.position, Vector2.down);
 		isGrounded = (ray.collider != null && ray.distance <= 0.75f);
