@@ -288,7 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75fd532e3132514497b9de8ab4e0955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
+  jumpHeight: 0
+  gravity: 9.8
 --- !u!50 &874724679
 Rigidbody2D:
   serializedVersion: 4
@@ -309,7 +311,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &874724680
 BoxCollider2D:
   m_ObjectHideFlags: 0
