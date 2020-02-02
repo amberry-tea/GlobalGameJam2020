@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
+	private SfxPlayer sfxPlayer;
     private float horiVelocity = 0.0f;  // Horizontal Velocity. Set by player movement.
     public Animator animator;
     public float speed;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
+		sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
     }
 
     void Update()
@@ -26,6 +28,13 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("VertSpeed", rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
         horiVelocity = Input.GetAxis("Horizontal");
+		
+		if(Mathf.Abs(horiVelocity) > 0 && hasntJumped)
+		{
+			sfxPlayer.PlaySFX("walk");
+		} else {
+			sfxPlayer.StopWalking();
+		}
     }
 
     void FixedUpdate()
@@ -37,6 +46,7 @@ public class PlayerController : MonoBehaviour
             {
                 hasntJumped = false;
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+				sfxPlayer.PlaySFX("jump");
             }
         }
 
