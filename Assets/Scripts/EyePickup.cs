@@ -9,6 +9,7 @@ public class EyePickup : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerController>().AddJump();
+            other.gameObject.GetComponent<PlayerController>().StopExplode();
             this.gameObject.SetActive(false);
         }
     }

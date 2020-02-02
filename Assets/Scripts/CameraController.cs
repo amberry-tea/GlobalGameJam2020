@@ -19,11 +19,22 @@ public class CameraController : MonoBehaviour
         orthoZoomComponent = 1;
         zoom = true;
 	}
+    public void ZoomOut() {
+        orthoZoomComponent = 1;
+        zoom = false;
+    }
 
     void Update() {
         if (zoom) {
             Time.timeScale = 0.3f;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0, -10), 0.1f);
+            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 2);
+            if (orthoZoomComponent < 1) {
+                cam.orthographicSize = orthoZoomComponent * 2.3f;
+            }
+        } else {
+            Time.timeScale = 1;
+            cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0.35f, -10), 0.1f);
             orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 2);
             if (orthoZoomComponent < 1) {
                 cam.orthographicSize = orthoZoomComponent * 2.3f;
