@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SfxPlayer : MonoBehaviour
 {
-    public AudioSource[] sourcePool;
+   public AudioSource[] sourcePool;
 	public bool isWalking;
 	public AudioSource walkingSource;
 	
