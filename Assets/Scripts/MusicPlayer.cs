@@ -177,6 +177,8 @@ public class MusicPlayer : MonoBehaviour
 					musicSources[1].Stop();
 					musicSources[0].volume = startVolume;
 					musicSources[1].volume = startVolume;
+					musicInstance = null;
+					Destroy(this);
 					print("All music stopped.");
 				
 					// If this fadeout was called when switching to a new song, call the PlayMusic function again.
