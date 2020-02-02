@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.5
+  repeats: 0
 --- !u!212 &425068075
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -335,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.5
+  repeats: 0
 --- !u!1 &936817064
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.1
+  repeats: 0
 --- !u!212 &1288011399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -576,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.25
+  repeats: 0
 --- !u!1 &1501552337
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.25
+  repeats: 0
 --- !u!212 &1501552340
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -689,7 +694,7 @@ PrefabInstance:
     - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
         type: 3}
@@ -735,31 +740,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703266777733160492, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
-        type: 3}
-      propertyPath: orthographic size
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703266777733160659, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703266777733160659, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7305b2d9c0dcff94ea18aac38fa1745b, type: 3}
@@ -808,6 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.25
+  repeats: 0
 --- !u!212 &2056985642
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -901,6 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.5
+  repeats: 0
 --- !u!212 &2071944555
 SpriteRenderer:
   m_ObjectHideFlags: 0
