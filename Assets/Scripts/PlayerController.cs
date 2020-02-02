@@ -86,11 +86,13 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                animator.SetBool("Should Die", true);
-                //very slow fall
-                isActive = false;
-                lowJumpMultipler = 0.3f;
-                Explode();
+                if (jumps == 0) {
+                    animator.SetBool("Should Die", true);
+                    //very slow fall
+                    isActive = false;
+                    lowJumpMultipler = 0.3f;
+                    Explode();
+                }
             }
         }
     }
@@ -112,16 +114,19 @@ public class PlayerController : MonoBehaviour
         else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
-        } 
+        }
+
+        if (onWall) {
+            rb.AddForce(Vector3.down);
+        }
         //resets grounded state to false, overridden by OnCollisionEnter2D
         isGrounded = false;
-        //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+        print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
     }
 
     public void AddJump()
     {
-        if(jumps < 2)
 			jumps = 2;
     }
 
@@ -130,7 +135,6 @@ public class PlayerController : MonoBehaviour
         BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
         if ((other.GetContact(0).point.y > other.gameObject.transform.position.y + other.gameObject.GetComponent<SpriteRenderer>().size.y - .2f) && !other.otherCollider.Equals(col))
         {
-            Debug.Log("Foot higher, " + other.otherCollider);
             hasntJumped = true;
             isGrounded = true;
             onWall = false;
@@ -142,29 +146,29 @@ public class PlayerController : MonoBehaviour
         }
         else if (!other.otherCollider.Equals(col))
         {
-            Debug.Log("Foot lower, " + other.otherCollider);
-            onWall = true;
-            hasntJumped = false;
-            isGrounded = false;
-        }
-        
-        if (other.GetContact(0).point.x > other.gameObject.transform.position.x + other.gameObject.GetComponent<SpriteRenderer>().size.x / 2 + .1f
-            || other.GetContact(0).point.x < other.gameObject.transform.position.x - other.gameObject.GetComponent<SpriteRenderer>().size.x / 2 - .1f) 
-        {
-            Debug.Log("On wall, " + other.otherCollider);
-            Debug.Log("Val :: " + other.gameObject.GetComponent<SpriteRenderer>().size.x);
             onWall = true;
             hasntJumped = false;
             isGrounded = false;
         }
     }
 
-
+    Coroutine c;
     void Explode()
     {
         Camera.main.GetComponent<CameraController>().ZoomIn();
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-        StartCoroutine(ExplodeCoroutine());
+        c = StartCoroutine(ExplodeCoroutine());
+    }
+
+    public void StopExplode() {
+        if (c != null) {
+            StopCoroutine(c);
+            animator.SetBool("Should Die", false);
+            //stop very slow fall
+            isActive = true;
+            lowJumpMultipler = 0.3f;
+            Camera.main.GetComponent<CameraController>().ZoomOut();
+        }
     }
 
     IEnumerator ExplodeCoroutine()
