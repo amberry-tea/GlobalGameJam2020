@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1703266777092643606}
   - component: {fileID: 1703266777092643607}
   - component: {fileID: 1703266777092643604}
-  - component: {fileID: 1703266777092643605}
   - component: {fileID: 1703266777092643611}
   - component: {fileID: 1703266777092643610}
   m_Layer: 0
@@ -105,22 +104,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1703266777092643605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703266777092643600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75fd532e3132514497b9de8ab4e0955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1703266777092643610}
-  speed: 5
-  jumpHeight: 0
-  gravity: 9.8
 --- !u!61 &1703266777092643611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,7 +140,7 @@ Animator:
   m_GameObject: {fileID: 1703266777092643600}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d9533ad329215fd4582d4711adb6a755, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
