@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: bb0871cf228afaf4bb4018e1cf09bc97
+guid: a45d06f7e1581bb4e8efd601e5ef6b19
 TextureImporter:
   fileIDToRecycleName:
-    21300000: jamesspritesheet_0
-    21300002: jamesspritesheet_1
-    21300004: jamesspritesheet_2
-    21300006: jamesspritesheet_3
-    21300008: jamesspritesheet_4
-    21300010: jamesspritesheet_5
+    21300000: Hood_0
+    21300002: Hood_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -90,121 +86,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jamesspritesheet_0
+      name: Hood_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 38
+        y: 32
         width: 32
-        height: 26
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f18b3eb4caad1f04097dee7003fbab2f
+      spriteID: c24680ade709c7b41b17ee3d3e489983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jamesspritesheet_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 70
-        width: 32
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aeb1b3a0b8f20b84ebfa44f8422e474d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jamesspritesheet_2
+      name: Hood_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 70
+        y: 0
         width: 32
-        height: 26
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3807b0a0847c024438e21af4b2a02e3b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jamesspritesheet_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 38
-        width: 32
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f03bd3cb0c2d01b4f9e6a073af6ee149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jamesspritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 6
-        width: 32
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 533f621722cf5cc4ab39918d00de08e1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jamesspritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 6
-        width: 32
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c9597ddd9ba10b46893cde6ec241436
+      spriteID: 55740db3f74e74848aff96bee1e2d481
       vertices: []
       indices: 
       edges: []
@@ -212,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 28fcfa66fa890244abc8c2ab1a99d111
+    spriteID: 7488c87f93da9734b995576237a369c1
     vertices: []
     indices: 
     edges: []
