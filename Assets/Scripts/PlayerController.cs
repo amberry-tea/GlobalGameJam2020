@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private SfxPlayer sfxPlayer;
     private float horiVelocity = 0.0f;  // Horizontal Velocity. Set by player movement.
     public Animator animator;
+    GameObject[] pickups;
 
     public float speed;
     public float jumpHeight;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         hasntJumped = true;
         isActive = true;
         sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
+        pickups = GameObject.FindGameObjectsWithTag("Pickup");
     }
 
     void Update()
@@ -46,11 +48,11 @@ public class PlayerController : MonoBehaviour
 
         if (Mathf.Abs(horiVelocity) > 0 && hasntJumped)
         {
-            sfxPlayer.PlaySFX("walk");
+            //sfxPlayer.PlaySFX("walk");
         }
         else
         {
-            sfxPlayer.StopWalking();
+            //sfxPlayer.StopWalking();
         }
 
         //Un-jumping code
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumpedInAir = false;
                 --jumps;
+                sfxPlayer.PlaySFX("jump");
                 animator.SetInteger("Jumps", jumps);
             }
             else
@@ -111,14 +114,14 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
         }
-        print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+        //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
     }
 
     public void AddJump()
     {
         if(jumps < 2)
-			jumps++;
+			jumps = 2;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -127,6 +130,12 @@ public class PlayerController : MonoBehaviour
         {
             hasntJumped = true;
             isGrounded = true;
+            if (pickups.Length > 0) {
+                foreach (GameObject p in pickups) {
+                    p.SetActive(true);
+                    Debug.Log(p);
+                }
+            }
         }
     }
 
