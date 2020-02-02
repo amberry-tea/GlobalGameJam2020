@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4267359685862314279}
   - component: {fileID: 4267359685862314276}
   - component: {fileID: 4267359685862314277}
+  - component: {fileID: 439987568678478991}
+  - component: {fileID: 4668088313122204219}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Untagged
@@ -99,3 +101,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &439987568678478991
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267359685862314274}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.085
+--- !u!114 &4668088313122204219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267359685862314274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36804ea0b3488d468221d4396ea5d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
