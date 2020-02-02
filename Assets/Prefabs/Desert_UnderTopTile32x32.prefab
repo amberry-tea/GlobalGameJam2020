@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6246173739673027603}
   - component: {fileID: 6482487083169575104}
-  - component: {fileID: 3278775822658777474}
+  - component: {fileID: 4094752888935194569}
   m_Layer: 0
-  m_Name: Desert_UnderTopTile
+  m_Name: Desert_UnderTopTile32x32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &3278775822658777474
-EdgeCollider2D:
+--- !u!61 &4094752888935194569
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,8 +93,16 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.16}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.35, y: 0.32}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.16, y: 0}
-  - {x: 0.16, y: 0}
