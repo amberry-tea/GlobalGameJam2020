@@ -56,13 +56,14 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumped = false;
+                sfxPlayer.PlaySFX("jump");
             }
             else if (hasntJumpedInAir)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumpedInAir = false;
                 --jumps;
-				sfxPlayer.PlaySFX("jump");
+				
             }
             else
             {
