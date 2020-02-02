@@ -73,10 +73,10 @@ public class LevelGenerator : MonoBehaviour
                     if(SceneManager.GetActiveScene().name == "Mountain1"){
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain2";
                     }
-                    if(SceneManager.GetActiveScene().name == "Mountain2"){
+                    else if(SceneManager.GetActiveScene().name == "Mountain2"){
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Boopland";
                     }
-                    if(SceneManager.GetActiveScene().name == "Boopland"){
+                    else if(SceneManager.GetActiveScene().name == "Boopland"){
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain1";
                     }
                 }
