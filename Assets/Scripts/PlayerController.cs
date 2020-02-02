@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private bool hasntJumpedInAir;
     private bool isGrounded;
-    private bool isActive;
+    public bool isActive;
     private bool onWall;
     private int jumps;
     private bool isDead;
