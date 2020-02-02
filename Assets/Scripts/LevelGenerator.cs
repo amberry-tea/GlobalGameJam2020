@@ -44,7 +44,11 @@ public class LevelGenerator : MonoBehaviour
             {
                 float yOffset = 0;
                 if (pixelColor.Equals(Color.red)) { //if the object is Smol_House_Populated
-                    yOffset = 0.47f;
+                    yOffset = 0.46f;
+                } else if (pixelColor.Equals(Color.black)) {
+                    yOffset = -0.05f;
+                } else if (pixelColor.Equals(Color.white)) {
+                    yOffset = -0.05f;
                 }
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
                 GameObject toSet = colorMapping.prefab;
