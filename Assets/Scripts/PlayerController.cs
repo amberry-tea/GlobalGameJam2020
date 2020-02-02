@@ -112,7 +112,8 @@ public class PlayerController : MonoBehaviour
 
     public void AddJump()
     {
-        jumps++;
+        if(jumps < 2)
+			jumps++;
     }
 
     void OnCollisionEnter2D(Collision2D other)
