@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isActive;
     private bool onWall;
     private int jumps;
+    private bool isDead;
 
     public static Vector2 checkpointPos = new Vector2(0,0);
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
         pickups = GameObject.FindGameObjectsWithTag("Pickup");
         this.gameObject.transform.position = checkpointPos;
+        isDead = true;
     }
 
     void Update()
@@ -52,15 +54,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Double Jumped", hasntJumpedInAir);
         animator.SetInteger("Jumps", jumps);
         horiVelocity = Input.GetAxis("Horizontal");
-
-        if (Mathf.Abs(horiVelocity) > 0 && hasntJumped)
-        {
-            //sfxPlayer.PlaySFX("walk");
-        }
-        else
-        {
-            //sfxPlayer.StopWalking();
-        }
 
         //Un-jumping code
         if (Input.GetKeyUp(KeyCode.Space) && isActive)
@@ -88,6 +81,7 @@ public class PlayerController : MonoBehaviour
                 hasntJumpedInAir = false;
                 --jumps;
                 sfxPlayer.PlaySFX("jump");
+				sfxPlayer.PlaySFX("eyesmash");
                 animator.SetInteger("Jumps", jumps);
             }
             else
@@ -157,7 +151,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag == "DeathTrigger"){
+            if(!isDead){
+                isDead = true;
             Explode();
+        }
         } else if (other.gameObject.tag == "CheckpointTrigger"){
             checkpointPos.x = this.gameObject.transform.position.x;
             checkpointPos.y =  this.gameObject.transform.position.y;
@@ -175,6 +172,10 @@ public class PlayerController : MonoBehaviour
         Camera.main.GetComponent<CameraController>().ZoomIn();
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         c = StartCoroutine(ExplodeCoroutine());
+		sfxPlayer.PlaySFX("death-explode");
+		
+		MusicPlayer music = FindObjectOfType<MusicPlayer>();
+		music.DeathPitch();
     }
 
     public void StopExplode() {

@@ -10,32 +10,17 @@ public class SfxPlayer : MonoBehaviour
 	
 	public void PlaySFX(string sfx){
 		
-		if(sfx == "walk" && !isWalking)
+		// Runs through every AudioSource in the pool.
+		foreach(AudioSource source in sourcePool)
 		{
-			isWalking = true;
-			walkingSource.Play();
-		}
-		else if(sfx != "walk")
-		{
-		
-			// Runs through every AudioSource in the pool.
-			foreach(AudioSource source in sourcePool)
-			{
 			
-				// If this source is not playing sound,
-				// break the loop and play the requested sfx.
-				if(!source.isPlaying)
-				{
-					source.PlayOneShot(Resources.Load("SFX/" + sfx) as AudioClip);
-					break;
-				}
+			// If this source is not playing sound,
+			// break the loop and play the requested sfx.
+			if(!source.isPlaying)
+			{
+				source.PlayOneShot(Resources.Load("SFX/" + sfx) as AudioClip);
+				break;
 			}
 		}
-	}
-	
-	public void StopWalking()
-	{
-		isWalking = false;
-		walkingSource.Stop();
 	}
 }
