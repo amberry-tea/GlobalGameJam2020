@@ -7,8 +7,9 @@ public class LevelGenerator : MonoBehaviour
     private float blockSize;
 
     public Texture2D map;
-    public ColorToPrefab[] colorMappings;
     public float startX, startY;
+    public bool isBackground;
+    public ColorToPrefab[] colorMappings;
 
     // Start is called before the first frame update
     void Start()
@@ -43,15 +44,25 @@ public class LevelGenerator : MonoBehaviour
             if (colorMapping.color.Equals(pixelColor))
             {
                 float yOffset = 0;
-                if (pixelColor.Equals(Color.red)) { //if the object is Smol_House_Populated
+                if (pixelColor.Equals(Color.red))
+                { //if the object is Smol_House_Populated
                     yOffset = 0.46f;
-                } else if (pixelColor.Equals(Color.black)) { //if the object is James
+                }
+                else if (pixelColor.Equals(Color.black))
+                { //if the object is James
                     yOffset = -0.05f;
-                } else if (pixelColor.Equals(new Color(0xc3 / (float) 0xff, 0xc3 / (float) 0xff, 0xc3 / (float) 0xff))) { // if the object is Smol
+                }
+                else if (pixelColor.Equals(new Color(0xc3 / (float)0xff, 0xc3 / (float)0xff, 0xc3 / (float)0xff)))
+                { // if the object is Smol
                     yOffset = -0.05f;
                 }
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
                 GameObject toSet = colorMapping.prefab;
+                if (isBackground)
+                {
+                    toSet.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+                    Destroy(toSet.GetComponent<BoxCollider2D>());
+                }
                 Instantiate(toSet, position, Quaternion.identity, transform);
             }
         }
