@@ -16,29 +16,33 @@ public class CameraController : MonoBehaviour
     }
 
     public void ZoomIn() {
-        orthoZoomComponent = 1;
+        orthoZoomComponent = 2;
         zoom = true;
 	}
     public void ZoomOut() {
-        orthoZoomComponent = 1;
+        orthoZoomComponent = 2;
         zoom = false;
     }
 
     void Update() {
+        print(zoom);
         if (zoom) {
-            Time.timeScale = 0.3f;
+            Time.timeScale = 0.2f;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0, -10), 0.1f);
-            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 2);
-            if (orthoZoomComponent < 1) {
-                cam.orthographicSize = orthoZoomComponent * 2.3f;
+            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 4.6f);
+            if (orthoZoomComponent < 2) {
+                cam.orthographicSize = orthoZoomComponent * 4.6f;
             }
-        } else {
+            print(zoom);
+        } else if (!zoom) {
             Time.timeScale = 1;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0.35f, -10), 0.1f);
-            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 2);
-            if (orthoZoomComponent < 1) {
-                cam.orthographicSize = orthoZoomComponent * 2.3f;
+            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 4.6f);
+            if (orthoZoomComponent < 2) {
+                cam.orthographicSize = orthoZoomComponent * 4.6f;
             }
+            print(zoom);
         }
+        print(zoom);
     }
 }
