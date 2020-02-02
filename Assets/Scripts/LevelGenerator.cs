@@ -45,9 +45,9 @@ public class LevelGenerator : MonoBehaviour
                 float yOffset = 0;
                 if (pixelColor.Equals(Color.red)) { //if the object is Smol_House_Populated
                     yOffset = 0.46f;
-                } else if (pixelColor.Equals(Color.black)) {
+                } else if (pixelColor.Equals(Color.black)) { //if the object is Hood
                     yOffset = -0.05f;
-                } else if (pixelColor.Equals(Color.white)) {
+                } else if (pixelColor.Equals(new Color(0xc3 / (float) 0xff, 0xc3 / (float) 0xff, 0xc3 / (float) 0xff))) { // if the object is Smol
                     yOffset = -0.05f;
                 }
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
