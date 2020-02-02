@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool hasntJumpedInAir;
     private bool isGrounded;
     private bool isActive;
+    private bool onWall;
     private int jumps;
 
 
@@ -104,14 +105,14 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(horiVelocity * speed, rb.velocity.y);
 
         //Jumping physics code
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 || onWall)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
         }
         else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
-        }
+        } 
         //resets grounded state to false, overridden by OnCollisionEnter2D
         isGrounded = false;
         //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
@@ -126,15 +127,35 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.GetContact(0).point.y > other.gameObject.transform.position.y + other.gameObject.GetComponent<SpriteRenderer>().size.y - .25F)
+        BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
+        if ((other.GetContact(0).point.y > other.gameObject.transform.position.y + other.gameObject.GetComponent<SpriteRenderer>().size.y - .2f) && !other.otherCollider.Equals(col))
         {
+            Debug.Log("Foot higher, " + other.otherCollider);
             hasntJumped = true;
             isGrounded = true;
+            onWall = false;
             if (pickups.Length > 0) {
                 foreach (GameObject p in pickups) {
                     p.SetActive(true);
                 }
             }
+        }
+        else if (!other.otherCollider.Equals(col))
+        {
+            Debug.Log("Foot lower, " + other.otherCollider);
+            onWall = true;
+            hasntJumped = false;
+            isGrounded = false;
+        }
+        
+        if (other.GetContact(0).point.x > other.gameObject.transform.position.x + other.gameObject.GetComponent<SpriteRenderer>().size.x / 2 + .1f
+            || other.GetContact(0).point.x < other.gameObject.transform.position.x - other.gameObject.GetComponent<SpriteRenderer>().size.x / 2 - .1f) 
+        {
+            Debug.Log("On wall, " + other.otherCollider);
+            Debug.Log("Val :: " + other.gameObject.GetComponent<SpriteRenderer>().size.x);
+            onWall = true;
+            hasntJumped = false;
+            isGrounded = false;
         }
     }
 
@@ -148,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ExplodeCoroutine()
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSeconds(22/60.0f);
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
