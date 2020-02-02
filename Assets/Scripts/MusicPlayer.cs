@@ -68,16 +68,20 @@ public class MusicPlayer : MonoBehaviour
 				// Load the audio files into Audio Sources.
 				musicSources[0].clip = currentMusic;
 				musicSources[0].volume = 1.0f;
-				musicSources[1].clip = currentMusicLoop;
-				musicSources[1].volume = 1.0f;
-				musicSources[1].loop = true;
+				
+				if(currentMusicLoop != null)
+				{
+					musicSources[1].clip = currentMusicLoop;
+					musicSources[1].volume = 1.0f;
+					musicSources[1].loop = true;
+				}
 	
 				// Tell the Audio Sources to play.
 				isPlaying = true;
 				musicSources[0].Play();
-				musicSources[1].PlayDelayed(currentMusic.length);
-			
-				print("Now Playing: " + currentMusicLoop.name);
+				
+				if(currentMusicLoop != null)
+					musicSources[1].PlayDelayed(currentMusic.length);
 			}
 			else
 				print("Music Player Error: No Audio Clip loaded! This file may not exist, or the song you requested has a typo.");
