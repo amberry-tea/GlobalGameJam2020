@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool onWall;
     private int jumps;
 
+    public static Vector2 checkpointPos = new Vector2(0,0);
 
     public float fallMultiplier;
     public float lowJumpMultipler;
@@ -38,10 +39,13 @@ public class PlayerController : MonoBehaviour
         isActive = true;
         sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
         pickups = GameObject.FindGameObjectsWithTag("Pickup");
+        this.gameObject.transform.position = checkpointPos;
     }
 
     void Update()
     {
+        //print(checkpointPos);
+
         animator.SetFloat("VertSpeed", rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
         animator.SetBool("Jumped Once", hasntJumped);
@@ -151,9 +155,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag == "DeathTrigger"){
+            Explode();
+        } else if (other.gameObject.tag == "CheckpointTrigger"){
+            checkpointPos.x = this.gameObject.transform.position.x;
+            checkpointPos.y =  this.gameObject.transform.position.y;
+        }
+    }
+
+
     Coroutine c;
     void Explode()
     {
+        //To validate animator boolean in order to play death animation
+        jumps = 0;
+        animator.SetBool("Should Die", true);
+
         Camera.main.GetComponent<CameraController>().ZoomIn();
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         c = StartCoroutine(ExplodeCoroutine());
@@ -175,6 +193,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(22/60.0f);
         Time.timeScale = 1;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
