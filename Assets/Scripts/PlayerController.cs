@@ -25,12 +25,14 @@ public class PlayerController : MonoBehaviour
 
     public float fallMultiplier;
     public float lowJumpMultipler;
+    private float lowJumpMultiplierOriginal;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
         jumps = 2;
+        lowJumpMultiplierOriginal = lowJumpMultipler;
         hasntJumpedInAir = true;
         hasntJumped = true;
         isActive = true;
@@ -101,10 +103,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isActive) {
-            speed = 0;
-        }
-        rb.velocity = new Vector2(horiVelocity * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horiVelocity * speed * (isActive ? 1 : 0), rb.velocity.y);
 
         //Jumping physics code
         if (rb.velocity.y < 0 || onWall)
@@ -121,7 +120,7 @@ public class PlayerController : MonoBehaviour
         }
         //resets grounded state to false, overridden by OnCollisionEnter2D
         isGrounded = false;
-        print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+        //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
     }
 
@@ -166,7 +165,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Should Die", false);
             //stop very slow fall
             isActive = true;
-            lowJumpMultipler = 0.3f;
+            lowJumpMultipler = lowJumpMultiplierOriginal;
+            jumps = 2;
             Camera.main.GetComponent<CameraController>().ZoomOut();
         }
     }
