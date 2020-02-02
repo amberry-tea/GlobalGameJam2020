@@ -69,18 +69,33 @@ public class LevelGenerator : MonoBehaviour
                 GameObject toSet = colorMapping.prefab;
                 GameObject block = Instantiate(toSet, position, Quaternion.identity, transform);
 
-                if(pixelColor.Equals(Color.green)){
-                    if(SceneManager.GetActiveScene().name == "Mountain1"){
+                if (pixelColor.Equals(Color.green))
+                {
+                    if (SceneManager.GetActiveScene().name == "Boopland")
+                    {
+                        if (x > 60)
+                        {
+                            block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain1";
+                        }
+                        else
+                        {
+                            block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Robo1";
+                        }
+                    }
+                    else if (SceneManager.GetActiveScene().name == "Mountain1")
+                    {
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain2";
                     }
-                    else if(SceneManager.GetActiveScene().name == "Mountain2"){
+                    else if (SceneManager.GetActiveScene().name == "Mountain2")
+                    {
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Boopland";
                     }
-                    else if(SceneManager.GetActiveScene().name == "Robo1"){
+                    else if (SceneManager.GetActiveScene().name == "Robo1")
+                    {
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Credits";
                     }
-                } 
-                
+                }
+
                 //broken conversion code for Mountain2 death triggers to cloud sprites
 
                 //else if(pixelColor.Equals(new Color(0xff /(float)0xff, (float)0x32 / 0xff,(float)0x32 / 0xff)) && SceneManager.GetActiveScene().name == "Mountain2") {
