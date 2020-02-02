@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public Texture2D map;
+    private float blockSize;
 
+    public Texture2D map;
     public ColorToPrefab[] colorMappings;
+    public float startX, startY;
 
     // Start is called before the first frame update
     void Start()
     {
+        blockSize = 0.32F;
         GenerateLevel();
     }
 
     void GenerateLevel()
     {
-        for(int x = 0; x < map.width; x++)
+        for (int x = 0; x < map.width; x++)
         {
-            for(int y = 0; y < map.height; y++)
+            for (int y = 0; y < map.height; y++)
             {
                 GenerateTile(x, y);
             }
         }
     }
 
-    void GenerateTile(int x, int y){
-        Color pixelColor = map.GetPixel(x,y);
+    void GenerateTile(int x, int y)
+    {
+        Color pixelColor = map.GetPixel(x, y);
 
         if (pixelColor.a == 0)
         {
@@ -36,9 +40,9 @@ public class LevelGenerator : MonoBehaviour
 
         foreach (ColorToPrefab colorMapping in colorMappings)
         {
-            if(colorMapping.color.Equals(pixelColor))
-            {    
-                Vector2 position = new Vector2(x,y);
+            if (colorMapping.color.Equals(pixelColor))
+            {
+                Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY);
                 Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
             }
         }
