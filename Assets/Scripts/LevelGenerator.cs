@@ -79,6 +79,10 @@ public class LevelGenerator : MonoBehaviour
                     else if(SceneManager.GetActiveScene().name == "Boopland"){
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain1";
                     }
+                } else if(pixelColor.Equals(new Color((float)0xC8, (float)0xC8,(float)0xC8)) && SceneManager.GetActiveScene().name == "Mountain2") {
+                    SpriteRenderer sr;
+                    sr = block.gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
+                    sr.sprite = Resources.Load("Cloud") as Sprite;
                 }
 
                 if (isBackground)
