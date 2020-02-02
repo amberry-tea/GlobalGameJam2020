@@ -119,10 +119,15 @@ public class MusicPlayer : MonoBehaviour
 		StartCoroutine(ChangeVolume(fadeLength, targetVolume));
 	}
 	
+	public void DeathPitch()
+	{
+		StartCoroutine(ChangeVolume(0.75f, 0.0f));
+		StartCoroutine(ChangePitch(0.5f, 0.1f));
+	}
+	
 	// Volume fade coroutine.
 	public IEnumerator ChangeVolume(float fadeLength, float newVolume)
 	{
-		print("Fadeout Successfully Called");
 		if(isPlaying == true)
 		{
 			float startVolume;
@@ -196,5 +201,42 @@ public class MusicPlayer : MonoBehaviour
 		}
 		else
 			print("Music Player Message: There is no music to fade out");
+	}
+	
+	public IEnumerator ChangePitch(float pitchLength, float newPitch)
+	{
+		if(isPlaying == true)
+		{
+			float startPitch = 1;
+			
+			if(musicSources[0].isPlaying == true)
+			{
+				// If the intro is still playing, get the volume of the intro's Audio Source.
+				startPitch = musicSources[0].pitch;
+				
+				// Fade the volume to the target volume. Fade both Audio Sources, in case the intro finishes before we fade out.
+				while(musicSources[0].pitch > newPitch)
+				{
+					musicSources[0].pitch -= startPitch * Time.deltaTime / pitchLength;
+					musicSources[1].pitch -= startPitch * Time.deltaTime / pitchLength;
+					yield return null;
+				}
+				
+			}
+			else if(musicSources[1].isPlaying == true)
+			{
+				// If the loop playing, get the volume of the loop's Audio Source.
+				startPitch = musicSources[1].pitch;
+				
+				// Fade the volume to the target volume.
+				while(musicSources[1].pitch > newPitch)
+				{
+					musicSources[1].pitch -= startPitch * Time.deltaTime / pitchLength;
+					yield return null;
+				}
+			}
+		}
+		else
+			print("Music Player Message: There is no music to change pitch.");
 	}
 }
