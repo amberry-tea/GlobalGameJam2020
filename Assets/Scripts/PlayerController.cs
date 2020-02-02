@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
 		} else {
 			sfxPlayer.StopWalking();
 		}
-    }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
