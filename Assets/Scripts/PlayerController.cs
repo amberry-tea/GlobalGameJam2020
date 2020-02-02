@@ -55,15 +55,6 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("Jumps", jumps);
         horiVelocity = Input.GetAxis("Horizontal");
 
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 && hasntJumped)
-        {
-            sfxPlayer.PlaySFX("walk");
-        }
-        else
-        {
-            sfxPlayer.StopWalking();
-        }
-
         //Un-jumping code
         if (Input.GetKeyUp(KeyCode.Space) && isActive)
         {
