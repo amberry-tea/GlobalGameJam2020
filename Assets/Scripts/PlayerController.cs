@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isActive;
     private bool onWall;
     private int jumps;
+    private bool isDead;
 
     public static Vector2 checkpointPos = new Vector2(0,0);
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
         pickups = GameObject.FindGameObjectsWithTag("Pickup");
         this.gameObject.transform.position = checkpointPos;
+        isDead = true;
     }
 
     void Update()
@@ -157,7 +159,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag == "DeathTrigger"){
+            if(!isDead){
+                isDead = true;
             Explode();
+        }
         } else if (other.gameObject.tag == "CheckpointTrigger"){
             checkpointPos.x = this.gameObject.transform.position.x;
             checkpointPos.y =  this.gameObject.transform.position.y;
