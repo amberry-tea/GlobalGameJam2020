@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1703266777092643604}
   - component: {fileID: 1703266777092643611}
   - component: {fileID: 1703266777092643610}
+  - component: {fileID: 114562535991658442}
   m_Layer: 0
   m_Name: Player Jam
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -140,7 +141,7 @@ Animator:
   m_GameObject: {fileID: 1703266777092643600}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b816790e82a2a8d4d8fca62c1ffc5755, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -149,6 +150,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114562535991658442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703266777092643600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75fd532e3132514497b9de8ab4e0955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1703266777092643610}
+  speed: 7
+  jumpHeight: 15
+  hasntJumped: 0
 --- !u!1 &1703266777733160495
 GameObject:
   m_ObjectHideFlags: 0
