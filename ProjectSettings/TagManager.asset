@@ -8,6 +8,9 @@ TagManager:
   - NPC
   - Pickup
   - MusicPlayer
+  - ChangeScene
+  - DeathTrigger
+  - CheckpointTrigger
   layers:
   - Default
   - TransparentFX

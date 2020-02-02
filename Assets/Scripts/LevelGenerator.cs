@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -63,11 +64,26 @@ public class LevelGenerator : MonoBehaviour
                 { // if the object is Smol
                     yOffset = -0.05f;
                 }
+
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
                 GameObject toSet = colorMapping.prefab;
                 GameObject block = Instantiate(toSet, position, Quaternion.identity, transform);
+
+                if(pixelColor.Equals(Color.green)){
+                    if(SceneManager.GetActiveScene().name == "Mountain1"){
+                        block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain2";
+                    }
+                    if(SceneManager.GetActiveScene().name == "Mountain2"){
+                        block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Boopland";
+                    }
+                    if(SceneManager.GetActiveScene().name == "Boopland"){
+                        block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain1";
+                    }
+                }
+
                 if (isBackground)
                 {
+                    //Render object in background
                     block.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
                     DestroyImmediate(block.GetComponent<BoxCollider2D>(), true);
                     block.GetComponent<SpriteRenderer>().color = dark;
