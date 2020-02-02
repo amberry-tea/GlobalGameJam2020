@@ -27,7 +27,14 @@ public class MusicPlayer : MonoBehaviour
 	void Start()
 	{
 		// Remove this if this won't be a Singleton
-		DontDestroyOnLoad(gameObject);
+		GameObject[] me = GameObject.FindGameObjectsWithTag("MusicPlayer");
+		if (me.Length < 1) {
+			DontDestroyOnLoad(gameObject);
+		} else {
+			Destroy(this.gameObject);
+		}
+		//ABOVE MIGHT BE FUNKY but I don't want to try it right now
+		//if it doesn't work, remove everything except for the DontDestroyOnLoad();
 		
 		if(autoStart)
 		{
