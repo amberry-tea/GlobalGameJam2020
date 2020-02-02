@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 if (jumps == 0) {
-                    animator.SetBool("Should Die", true);
+                    //animator.SetBool("Should Die", true);
                     //very slow fall
                     isActive = false;
                     lowJumpMultipler = 0.3f;
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
     {
         //To validate animator boolean in order to play death animation
         jumps = 0;
-        animator.SetBool("Should Die", true);
+        animator.SetBool("Need to Die", true);
 
         Camera.main.GetComponent<CameraController>().ZoomIn();
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
@@ -185,7 +185,8 @@ public class PlayerController : MonoBehaviour
     public void StopExplode() {
         if (c != null) {
             StopCoroutine(c);
-            animator.SetBool("Should Die", false);
+            //animator.SetBool("Should Die", false);
+            animator.SetBool("Need to Die", false);
             //stop very slow fall
             isActive = true;
             lowJumpMultipler = lowJumpMultiplierOriginal;
