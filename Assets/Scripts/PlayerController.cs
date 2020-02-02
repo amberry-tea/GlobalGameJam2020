@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
         pickups = GameObject.FindGameObjectsWithTag("Pickup");
         this.gameObject.transform.position = checkpointPos;
-        isDead = true;
+        isDead = false;
     }
 
     void Update()
@@ -119,10 +119,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.down);
         }
-        if (rb.velocity.y != 0)
-        {
-            print(rb.velocity.y);
-        }
+
 
         //Max fall speed limiter
         if (rb.velocity.y < -maxFallSpeed)

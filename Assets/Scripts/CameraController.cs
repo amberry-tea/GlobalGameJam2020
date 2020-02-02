@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
     }
 
     void Update() {
-        print(zoom);
+        //print(zoom);
         if (zoom) {
             Time.timeScale = 0.2f;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0, -10), 0.1f);
@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
             if (orthoZoomComponent < zoomLevel) {
                 cam.orthographicSize = orthoZoomComponent * 2.3f * zoomLevel;
             }
-            print(zoom);
+            //print(zoom);
         } else if (!zoom) {
             Time.timeScale = 1;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0.35f, -10), 0.1f);
@@ -43,8 +43,8 @@ public class CameraController : MonoBehaviour
             if (orthoZoomComponent < zoomLevel) {
                 cam.orthographicSize = orthoZoomComponent * 2.3f * zoomLevel;
             }
-            print(zoom);
+            //print(zoom);
         }
-        print(zoom);
+        //print(zoom);
     }
 }

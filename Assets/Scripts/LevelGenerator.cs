@@ -79,11 +79,16 @@ public class LevelGenerator : MonoBehaviour
                     else if(SceneManager.GetActiveScene().name == "Robo1"){
                         block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Credits";
                     }
-                } else if(pixelColor.Equals(new Color((float)0xC8, (float)0xC8,(float)0xC8)) && SceneManager.GetActiveScene().name == "Mountain2") {
-                    SpriteRenderer sr;
-                    sr = block.gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
-                    sr.sprite = Resources.Load("Cloud") as Sprite;
-                }
+                } 
+                
+                //broken conversion code for Mountain2 death triggers to cloud sprites
+
+                //else if(pixelColor.Equals(new Color(0xff /(float)0xff, (float)0x32 / 0xff,(float)0x32 / 0xff)) && SceneManager.GetActiveScene().name == "Mountain2") {
+                //     print("WOA");
+                //     SpriteRenderer sr;
+                //     sr = block.gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
+                //     sr.sprite = Resources.Load("Cloud") as Sprite;
+                // }
 
                 if (isBackground)
                 {
