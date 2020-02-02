@@ -10,8 +10,9 @@ public class LevelGenerator : MonoBehaviour
     public ColorToPrefab[] colorMappings;
     public float startX, startY;
 
-    // Start is called before the first frame update
-    void Start()
+    // Awake is called once, before Start
+    // Swapped to Awake so that everything can be referenced in the Start method of other objects
+    void Awake()
     {
         blockSize = 0.32F;
         GenerateLevel();
