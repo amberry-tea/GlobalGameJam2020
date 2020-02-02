@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 114562535991658442}
   m_Layer: 0
   m_Name: Player Jam
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1703266777092643610}
-  speed: 5
+  speed: 2
   jumpHeight: 7
   hasntJumped: 0
 --- !u!1 &1703266777733160495
