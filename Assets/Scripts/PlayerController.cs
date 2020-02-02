@@ -111,18 +111,25 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
         }
-    }
-    //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+        print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
-    public void AddJump() {
-        jumps++;
-        animator.SetInteger("Jumps", jumps);
     }
+
+    public void AddJump()
+    {
+        if(jumps < 2)
+			jumps++;
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        hasntJumped = true;
-        isGrounded = true;
+        if (other.GetContact(0).point.y > other.gameObject.transform.position.y + other.gameObject.GetComponent<SpriteRenderer>().size.y - .25F)
+        {
+            hasntJumped = true;
+            isGrounded = true;
+        }
     }
+
 
     void Explode()
     {
@@ -131,15 +138,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ExplodeCoroutine()
     {
-		//broken camera zoom in
-		//Camera.main.GetComponent<CameraController>().ZoomIn();
+        //broken camera zoom in
+        //Camera.main.GetComponent<CameraController>().ZoomIn();
 
-		//broken slow down
-		//Time.timeScale = 0.2F;
-		
+        //broken slow down
+        //Time.timeScale = 0.2F;
+
         yield return new WaitForSecondsRealtime(.25F);
 
-		//Time.timeScale = 1;
+        //Time.timeScale = 1;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
