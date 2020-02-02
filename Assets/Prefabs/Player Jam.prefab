@@ -189,6 +189,7 @@ MonoBehaviour:
   animator: {fileID: 1703266777092643610}
   speed: 2.5
   jumpHeight: 3
+  maxFallSpeed: 3.5
   fallMultiplier: 1.2
   lowJumpMultipler: 1.5
 --- !u!114 &2145302416

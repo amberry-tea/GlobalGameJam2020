@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8189157184888461, guid: b823e8c10253641458150676b92d4602, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189157184888461, guid: b823e8c10253641458150676b92d4602, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -167,13 +167,25 @@ PrefabInstance:
       propertyPath: map
       value: 
       objectReference: {fileID: 2800000, guid: edc87dadfd42f564e98cb6549968bc61, type: 3}
+    - target: {fileID: 8189157184888462, guid: b823e8c10253641458150676b92d4602, type: 3}
+      propertyPath: startX
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189157184888462, guid: b823e8c10253641458150676b92d4602, type: 3}
+      propertyPath: startY
+      value: -78.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189157184888462, guid: b823e8c10253641458150676b92d4602, type: 3}
+      propertyPath: isBackground
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8189157184888463, guid: b823e8c10253641458150676b92d4602, type: 3}
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b823e8c10253641458150676b92d4602, type: 3}
---- !u!1001 &764268240
+--- !u!1001 &1047947750
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -223,7 +235,7 @@ PrefabInstance:
     - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
         type: 3}
@@ -287,7 +299,7 @@ PrefabInstance:
     - target: {fileID: 507074980530006012, guid: 4bfd2339c51d6764d9afed97606de285,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 507074980530006012, guid: 4bfd2339c51d6764d9afed97606de285,
         type: 3}

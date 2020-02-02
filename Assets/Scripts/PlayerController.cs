@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float jumpHeight;
+    public float maxFallSpeed;
     private bool hasntJumped;
 
     private bool hasntJumpedInAir;
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private int jumps;
     private bool isDead;
 
-    public static Vector2 checkpointPos = new Vector2(0,0);
+    public static Vector2 checkpointPos = new Vector2(0, 0);
 
     public float fallMultiplier;
     public float lowJumpMultipler;
@@ -86,7 +87,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (jumps == 0) {
+                if (jumps == 0)
+                {
                     //animator.SetBool("Should Die", true);
                     //very slow fall
                     isActive = false;
@@ -113,9 +115,21 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
         }
 
-        if (onWall) {
+        if (onWall)
+        {
             rb.AddForce(Vector3.down);
         }
+        if (rb.velocity.y != 0)
+        {
+            print(rb.velocity.y);
+        }
+
+        //Max fall speed limiter
+        if (rb.velocity.y < -maxFallSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
+        }
+
         //resets grounded state to false, overridden by OnCollisionEnter2D
         isGrounded = false;
         //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
@@ -124,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddJump()
     {
-			jumps = 2;
+        jumps = 2;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -135,8 +149,10 @@ public class PlayerController : MonoBehaviour
             hasntJumped = true;
             isGrounded = true;
             onWall = false;
-            if (pickups.Length > 0) {
-                foreach (GameObject p in pickups) {
+            if (pickups.Length > 0)
+            {
+                foreach (GameObject p in pickups)
+                {
                     p.SetActive(true);
                 }
             }
@@ -149,15 +165,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "DeathTrigger"){
-            if(!isDead){
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "DeathTrigger")
+        {
+            if (!isDead)
+            {
                 isDead = true;
-            Explode();
+                Explode();
+            }
         }
-        } else if (other.gameObject.tag == "CheckpointTrigger"){
+        else if (other.gameObject.tag == "CheckpointTrigger")
+        {
             checkpointPos.x = this.gameObject.transform.position.x;
-            checkpointPos.y =  this.gameObject.transform.position.y;
+            checkpointPos.y = this.gameObject.transform.position.y;
         }
     }
 
@@ -178,8 +199,10 @@ public class PlayerController : MonoBehaviour
 		music.DeathPitch();
     }
 
-    public void StopExplode() {
-        if (c != null) {
+    public void StopExplode()
+    {
+        if (c != null)
+        {
             StopCoroutine(c);
             //animator.SetBool("Should Die", false);
             animator.SetBool("Need to Die", false);
@@ -193,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ExplodeCoroutine()
     {
-        yield return new WaitForSeconds(22/60.0f);
+        yield return new WaitForSeconds(22 / 60.0f);
         Time.timeScale = 1;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
