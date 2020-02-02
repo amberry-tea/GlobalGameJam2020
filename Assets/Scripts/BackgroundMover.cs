@@ -2,29 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundMover : MonoBehaviour {
+public class BackgroundMover : MonoBehaviour
+{
     private float length, startpos;
     private Camera cam;
     public float parallaxEffect;
+    public bool repeats;
 
     // Start is called before the first frame update
-    void Start () {
+    void Start()
+    {
         startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer> ().bounds.size.x;
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
         cam = Camera.main;
+        repeats = true;
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
 
-        transform.position = new Vector3 (startpos + dist, transform.position.y, transform.position.z);
+        transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
 
-        if (temp > startpos + length) {
-            startpos += length * 2;
-        } else if (temp < startpos - length) {
-            startpos -= length * 2;
+        if (repeats)
+        {
+            if (temp > startpos + length)
+            {
+                startpos += length * 2;
+            }
+            else if (temp < startpos - length)
+            {
+                startpos -= length * 2;
+            }
         }
     }
 
