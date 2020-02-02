@@ -42,8 +42,13 @@ public class LevelGenerator : MonoBehaviour
         {
             if (colorMapping.color.Equals(pixelColor))
             {
-                Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY);
-                Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+                float yOffset = 0;
+                if (pixelColor.Equals(Color.red)) { //if the object is Smol_House_Populated
+                    yOffset = 0.47f;
+                }
+                Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
+                GameObject toSet = colorMapping.prefab;
+                Instantiate(toSet, position, Quaternion.identity, transform);
             }
         }
     }
