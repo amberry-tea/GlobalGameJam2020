@@ -1,9 +1,13 @@
 fileFormatVersion: 2
-guid: 3c3f7f2ca65cf9c45ac36e00e903a3af
+guid: bb0871cf228afaf4bb4018e1cf09bc97
 TextureImporter:
   fileIDToRecycleName:
-    21300000: smolspritesheet_0
-    21300002: smolspritesheet_1
+    21300000: jamesspritesheet_0
+    21300002: jamesspritesheet_1
+    21300004: jamesspritesheet_2
+    21300006: jamesspritesheet_3
+    21300008: jamesspritesheet_4
+    21300010: jamesspritesheet_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -38,7 +42,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -67,7 +71,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -78,7 +82,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -86,7 +90,47 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: smolspritesheet_0
+      name: jamesspritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d92595c13a8f8e4c96055bdd3e03205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jamesspritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e85a61b0fc5619c4389b1a5a45f685af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jamesspritesheet_2
       rect:
         serializedVersion: 2
         x: 0
@@ -100,13 +144,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e78a0cdfa5b5dfe4fbe0bb4fb45d2f09
+      spriteID: cfd28528bf81a5f49a4c0a0e64e02572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smolspritesheet_1
+      name: jamesspritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d350eefa33100469f192459e70f915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jamesspritesheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -120,7 +184,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c00960593fc2b478d99565ef6970f2
+      spriteID: e18698565b408a44582872bf2d52fc63
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jamesspritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e731299164d9b944b83a7e9a5398abf2
       vertices: []
       indices: 
       edges: []
@@ -128,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3c8a2ad4d8e1c0448acd65b4688cc692
+    spriteID: 28fcfa66fa890244abc8c2ab1a99d111
     vertices: []
     indices: 
     edges: []
