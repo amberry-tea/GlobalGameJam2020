@@ -4,24 +4,41 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private float zoom;
+    private bool zoom;
+    private float orthoZoomComponent;
+    private Camera cam;
     //public GameObject player;
      
     // Start is called before the first frame update
     void Start()
     {
-        //offset = transform.position - player.transform.position;
+        cam = this.GetComponent<Camera>();
     }
 
-    // public void ZoomIn(){
-    // 	StartCoroutine(ZoomInCoroutine());
-	// }
+    public void ZoomIn() {
+        orthoZoomComponent = 1;
+        zoom = true;
+	}
+    public void ZoomOut() {
+        orthoZoomComponent = 1;
+        zoom = false;
+    }
 
-	// IEnumerator ZoomInCoroutine(){
-	// 	while(zoom > .5){
-    //         zoom -= 0.05F;
-    //         yield return new WaitForEndOfFrame();
-    //     }
-	// }
-
+    void Update() {
+        if (zoom) {
+            Time.timeScale = 0.3f;
+            cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0, -10), 0.1f);
+            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 2);
+            if (orthoZoomComponent < 1) {
+                cam.orthographicSize = orthoZoomComponent * 2.3f;
+            }
+        } else {
+            Time.timeScale = 1;
+            cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, new Vector3(0, 0.35f, -10), 0.1f);
+            orthoZoomComponent = cam.transform.localPosition.y + (0.3f / 2);
+            if (orthoZoomComponent < 1) {
+                cam.orthographicSize = orthoZoomComponent * 2.3f;
+            }
+        }
+    }
 }

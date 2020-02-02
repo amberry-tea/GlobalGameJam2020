@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelGenerator : MonoBehaviour
 {
     private float blockSize;
 
     public Texture2D map;
-    public ColorToPrefab[] colorMappings;
     public float startX, startY;
+    public bool isBackground;
+    public ColorToPrefab[] colorMappings;
 
-    // Start is called before the first frame update
-    void Start()
+    private Color dark;
+
+    // Awake is called once, before Start
+    // Swapped to Awake so that everything can be referenced in the Start method of other objects
+    void Awake()
     {
+        if (isBackground)
+        {
+            dark = new Color(1F, 1F, 1F);
+        }
         blockSize = 0.32F;
         GenerateLevel();
     }
@@ -43,16 +52,42 @@ public class LevelGenerator : MonoBehaviour
             if (colorMapping.color.Equals(pixelColor))
             {
                 float yOffset = 0;
-                if (pixelColor.Equals(Color.red)) { //if the object is Smol_House_Populated
+                if (pixelColor.Equals(Color.red))
+                { //if the object is Smol_House_Populated
                     yOffset = 0.46f;
-                } else if (pixelColor.Equals(Color.black)) {
-                    yOffset = -0.05f;
-                } else if (pixelColor.Equals(Color.white)) {
+                }
+                else if (pixelColor.Equals(Color.black))
+                { //if the object is James
                     yOffset = -0.05f;
                 }
+                else if (pixelColor.Equals(new Color(0xc3 / (float)0xff, 0xc3 / (float)0xff, 0xc3 / (float)0xff)))
+                { // if the object is Smol
+                    yOffset = -0.05f;
+                }
+
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
                 GameObject toSet = colorMapping.prefab;
-                Instantiate(toSet, position, Quaternion.identity, transform);
+                GameObject block = Instantiate(toSet, position, Quaternion.identity, transform);
+
+                if(pixelColor.Equals(Color.green)){
+                    if(SceneManager.GetActiveScene().name == "Mountain1"){
+                        block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain2";
+                    }
+                    if(SceneManager.GetActiveScene().name == "Mountain2"){
+                        block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Boopland";
+                    }
+                    if(SceneManager.GetActiveScene().name == "Boopland"){
+                        block.gameObject.GetComponent<ChangeSceneTrigger>().sceneName = "Mountain1";
+                    }
+                }
+
+                if (isBackground)
+                {
+                    //Render object in background
+                    block.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+                    DestroyImmediate(block.GetComponent<BoxCollider2D>(), true);
+                    block.GetComponent<SpriteRenderer>().color = dark;
+                }
             }
         }
     }

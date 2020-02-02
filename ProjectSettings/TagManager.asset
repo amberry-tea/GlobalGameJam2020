@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Collider
   - NPC
+  - Pickup
+  - MusicPlayer
+  - ChangeScene
+  - DeathTrigger
+  - CheckpointTrigger
   layers:
   - Default
   - TransparentFX

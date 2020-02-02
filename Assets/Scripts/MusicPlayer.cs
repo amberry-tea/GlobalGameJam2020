@@ -41,16 +41,15 @@ public class MusicPlayer : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		// If there is no MusicPlayer instance, this is the Singleton.
-		if(musicInstance == null)
-		{
-			musicInstance = this;
-		}
-		// If this is not the first MusicPlayer instance, go commit die.
-		else if(this != musicInstance)
-		{
+		// Remove this if this won't be a Singleton
+		GameObject[] me = GameObject.FindGameObjectsWithTag("MusicPlayer");
+		if (me.Length < 1) {
+			DontDestroyOnLoad(gameObject);
+		} else {
 			Destroy(this.gameObject);
 		}
+		//ABOVE MIGHT BE FUNKY but I don't want to try it right now
+		//if it doesn't work, remove everything except for the DontDestroyOnLoad();
 		
 		if(autoStart)
 		{
