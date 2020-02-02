@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5700fa81c6204584a914fdb18cc29603
+guid: 77cbe866a4dd68c4bbe1973a9d5ffa3a
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap
@@ -76,7 +76,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 60b06907847404c4089e10ea5536aa69
     vertices: []
     indices: 
     edges: []
