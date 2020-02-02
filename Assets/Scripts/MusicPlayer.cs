@@ -22,19 +22,35 @@ public class MusicPlayer : MonoBehaviour
 	private string restartMusicName;
 	private AudioClip currentMusic;
 	private AudioClip currentMusicLoop;
+	private static MusicPlayer musicInstance;
+	
+	// Create MusicPlayer instance.
+	public static MusicPlayer instance
+	{
+		get
+		{
+			if(musicInstance == null)
+			{
+				musicInstance = FindObjectOfType<MusicPlayer>();
+				DontDestroyOnLoad(musicInstance.gameObject);
+			}
+			return musicInstance;
+		}
+	}
 	
 	// Start is called before the first frame update
 	void Start()
 	{
-		// Remove this if this won't be a Singleton
-		GameObject[] me = GameObject.FindGameObjectsWithTag("MusicPlayer");
-		if (me.Length < 1) {
-			DontDestroyOnLoad(gameObject);
-		} else {
+		// If there is no MusicPlayer instance, this is the Singleton.
+		if(musicInstance == null)
+		{
+			musicInstance = this;
+		}
+		// If this is not the first MusicPlayer instance, go commit die.
+		else if(this != musicInstance)
+		{
 			Destroy(this.gameObject);
 		}
-		//ABOVE MIGHT BE FUNKY but I don't want to try it right now
-		//if it doesn't work, remove everything except for the DontDestroyOnLoad();
 		
 		if(autoStart)
 		{
@@ -126,10 +142,15 @@ public class MusicPlayer : MonoBehaviour
 		StartCoroutine(ChangeVolume(fadeLength, targetVolume));
 	}
 	
+	public void DeathPitch()
+	{
+		StartCoroutine(ChangeVolume(0.75f, 0.0f));
+		StartCoroutine(ChangePitch(0.6f, 0.25f));
+	}
+	
 	// Volume fade coroutine.
 	public IEnumerator ChangeVolume(float fadeLength, float newVolume)
 	{
-		print("Fadeout Successfully Called");
 		if(isPlaying == true)
 		{
 			float startVolume;
@@ -203,5 +224,17 @@ public class MusicPlayer : MonoBehaviour
 		}
 		else
 			print("Music Player Message: There is no music to fade out");
+	}
+	
+	public IEnumerator ChangePitch(float pitchLength, float newPitch)
+	{
+		float startPitch = 1;
+			
+		while(musicSources[0].pitch > newPitch)
+		{
+			musicSources[0].pitch -= startPitch * Time.deltaTime / pitchLength;
+			musicSources[1].pitch -= startPitch * Time.deltaTime / pitchLength;
+			yield return null;
+		}
 	}
 }
