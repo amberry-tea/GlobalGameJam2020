@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-	private SfxPlayer sfxPlayer;
+    private SfxPlayer sfxPlayer;
     private float horiVelocity = 0.0f;  // Horizontal Velocity. Set by player movement.
     public Animator animator;
 
@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
     private bool hasntJumped;
     private bool hasntJumpedInAir;
     private bool isGrounded;
+    private bool isActive;
     private int jumps;
+
 
     public float fallMultiplier;
     public float lowJumpMultipler;
@@ -28,7 +30,8 @@ public class PlayerController : MonoBehaviour
         jumps = 2;
         hasntJumpedInAir = true;
         hasntJumped = true;
-		sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
+        isActive = true;
+        sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
     }
 
     void Update()
@@ -36,15 +39,17 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("VertSpeed", rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
         horiVelocity = Input.GetAxis("Horizontal");
-		
-		if(Mathf.Abs(horiVelocity) > 0 && hasntJumped)
-		{
-			sfxPlayer.PlaySFX("walk");
-		} else {
-			sfxPlayer.StopWalking();
-		}
 
-		//Un-jumping code
+        if (Mathf.Abs(horiVelocity) > 0 && hasntJumped)
+        {
+            sfxPlayer.PlaySFX("walk");
+        }
+        else
+        {
+            sfxPlayer.StopWalking();
+        }
+
+        //Un-jumping code
         if (Input.GetKeyUp(KeyCode.Space))
         {
             if (jumps > 0)
@@ -53,28 +58,27 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-		//Jumping code
+        //Jumping code
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (hasntJumped)
             {
-				//Grounded / saved jump
+                //Grounded / saved jump
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumped = false;
                 sfxPlayer.PlaySFX("jump");
             }
             else if (hasntJumpedInAir)
             {
-				//Double Jump
+                //Double Jump
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumpedInAir = false;
                 --jumps;
-				
             }
             else
             {
-				//Used all double jumps
-				Explode();
+                //Used all double jumps
+                Explode();
             }
         }
     }
@@ -85,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(horiVelocity * speed, rb.velocity.y);
 
-		//Jumping physics code
+        //Jumping physics code
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
@@ -94,11 +98,16 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
         }
-
-        //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
-
+        //resets grounded state to false, overridden by OnCollisionEnter2D
         isGrounded = false;
+
+        if (!isActive)
+        {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0;
+        }
     }
+    //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
     public void AddJump() {
         jumps++;
@@ -109,7 +118,21 @@ public class PlayerController : MonoBehaviour
         isGrounded = true;
     }
 
-	void Explode(){
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-	}
+    void Explode()
+    {
+        StartCoroutine(ExplodeCoroutine());
+    }
+
+    IEnumerator ExplodeCoroutine()
+    {
+		//broken camera zoom in
+		//Camera.main.GetComponent<CameraController>().ZoomIn();
+		//broken slow down
+		//Time.timeScale = 0.2F;
+        yield return new WaitForSecondsRealtime(.25F);
+		//Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+    }
+
+
 }
