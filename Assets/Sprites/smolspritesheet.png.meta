@@ -1,7 +1,15 @@
 fileFormatVersion: 2
-guid: 5d78b7c625131694b87091904da1e154
+<<<<<<< HEAD
+guid: 3c3f7f2ca65cf9c45ac36e00e903a3af
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: smolspritesheet_0
+    21300002: smolspritesheet_1
+=======
+guid: 890c978290cdb3146a0a1967cb170497
 TextureImporter:
   fileIDToRecycleName: {}
+>>>>>>> master
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -31,7 +39,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> master
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,9 +52,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 2
+=======
   spriteMode: 1
+>>>>>>> master
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -63,6 +79,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -75,6 +92,9 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
+=======
+    textureCompression: 1
+>>>>>>> master
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,11 +102,59 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
+    sprites:
+    - serializedVersion: 2
+      name: smolspritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39112fd905e2aed44b3f7183faeb584d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: smolspritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a48e4057a8ac04889336735e2d59e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4b8eba4f56dfd2846903bd8a393f33d4
+=======
     sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6b0ddcbe72700ac4f8f30147a40fd66f
+    spriteID: 188913500b97f4d458c8a3d97c3b2c37
+>>>>>>> master
     vertices: []
     indices: 
     edges: []
