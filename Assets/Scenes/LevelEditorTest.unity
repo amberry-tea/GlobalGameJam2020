@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de10ce649890e80429e8a72faaa39d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2800000, guid: 9a305de1150d4d0458adf5cb122f1f44, type: 3}
+  map: {fileID: 2800000, guid: 39f6cc017ad3ac346b3ebafdff549f43, type: 3}
   colorMappings:
   - color: {r: 0.39215687, g: 0.19607843, b: 0.19607843, a: 1}
     prefab: {fileID: 776651981429077658, guid: 504c800e074d127469093dbf307afba6, type: 3}
@@ -694,7 +694,7 @@ PrefabInstance:
     - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 8.18
       objectReference: {fileID: 0}
     - target: {fileID: 1703266777092643606, guid: 7305b2d9c0dcff94ea18aac38fa1745b,
         type: 3}
