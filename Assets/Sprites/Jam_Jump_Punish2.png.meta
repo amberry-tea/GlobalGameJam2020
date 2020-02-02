@@ -1,23 +1,13 @@
 fileFormatVersion: 2
-guid: 7708a38bf7a15074895134148e32b7d2
+guid: 41f1b4b90dfbb51468f7f2832ad44a00
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Jam_Jump_Die 1_0
-    21300002: Jam_Jump_Die 1_1
-    21300004: Jam_Jump_Die 1_2
-    21300006: Jam_Jump_Die 1_3
-    21300008: Jam_Jump_Die 1_4
-    21300010: Jam_Jump_Die 1_5
-    21300012: Jam_Jump_Die 1_6
-    21300014: Jam_Jump_Die 1_7
-    21300016: Jam_Jump_Die_0
-    21300018: Jam_Jump_Die_1
-    21300020: Jam_Jump_Die_2
-    21300022: Jam_Jump_Die_3
-    21300024: Jam_Jump_Die_4
-    21300026: Jam_Jump_Die_5
-    21300028: Jam_Jump_Die_6
-    21300030: Jam_Jump_Die_7
+    21300000: Jam_Jump_Punish2_0
+    21300002: Jam_Jump_Punish2_1
+    21300004: Jam_Jump_Punish2_2
+    21300006: Jam_Jump_Punish2_3
+    21300008: Jam_Jump_Punish2_4
+    21300010: Jam_Jump_Punish2_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -100,7 +90,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jam_Jump_Die_0
+      name: Jam_Jump_Punish2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,13 +104,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3942ae34116e31548b5f5e60bca4ccdc
+      spriteID: 08d5ab8d50cf00d42abbce9d9c01acc2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jam_Jump_Die_1
+      name: Jam_Jump_Punish2_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,33 +124,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8705010c163e5e4081412f7bcadbb51
+      spriteID: dd8795deeef9eab448fae4ce7205b2e3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jam_Jump_Die_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01f5a60b3a5e2cc41af60169947bd5de
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jam_Jump_Die_3
+      name: Jam_Jump_Punish2_2
       rect:
         serializedVersion: 2
         x: 0
@@ -174,13 +144,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7c0c990e78d24c428f274ee829c7a1f
+      spriteID: e473c33e46669b142a58ccbd28f4444b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jam_Jump_Die_4
+      name: Jam_Jump_Punish2_3
       rect:
         serializedVersion: 2
         x: 32
@@ -194,33 +164,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c6c00e0ecd810549aad615eaa692f16
+      spriteID: b74e463043d03d646b977113c46a293c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jam_Jump_Die_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 334dd0d986585c8478776ec6c4d89988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jam_Jump_Die_6
+      name: Jam_Jump_Punish2_4
       rect:
         serializedVersion: 2
         x: 0
@@ -234,13 +184,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78b521aeb66730b47880e3cbb87e8666
+      spriteID: 89cf92f52c9ba9944a6b4411185f6e5e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jam_Jump_Die_7
+      name: Jam_Jump_Punish2_5
       rect:
         serializedVersion: 2
         x: 32
@@ -254,7 +204,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7be9a81bccb03147a708f901be1c862
+      spriteID: be98c465eefb85b4f9a6b3d77f4964f5
       vertices: []
       indices: 
       edges: []
@@ -262,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a464760210e1e9e42a4641726e3007ff
+    spriteID: 4cd1655b964b8ed40bc1cbfd3618f22b
     vertices: []
     indices: 
     edges: []

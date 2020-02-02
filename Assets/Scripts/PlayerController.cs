@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private SfxPlayer sfxPlayer;
     private float horiVelocity = 0.0f;  // Horizontal Velocity. Set by player movement.
     public Animator animator;
+    GameObject[] pickups;
 
     public float speed;
     public float jumpHeight;
     private bool hasntJumped;
+
     private bool hasntJumpedInAir;
     private bool isGrounded;
     private bool isActive;
@@ -32,25 +34,29 @@ public class PlayerController : MonoBehaviour
         hasntJumped = true;
         isActive = true;
         sfxPlayer = GetComponent<SfxPlayer>() as SfxPlayer;
+        pickups = GameObject.FindGameObjectsWithTag("Pickup");
     }
 
     void Update()
     {
         animator.SetFloat("VertSpeed", rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+        animator.SetBool("Jumped Once", hasntJumped);
+        animator.SetBool("Double Jumped", hasntJumpedInAir);
+        animator.SetInteger("Jumps", jumps);
         horiVelocity = Input.GetAxis("Horizontal");
 
         if (Mathf.Abs(horiVelocity) > 0 && hasntJumped)
         {
-            sfxPlayer.PlaySFX("walk");
+            //sfxPlayer.PlaySFX("walk");
         }
         else
         {
-            sfxPlayer.StopWalking();
+            //sfxPlayer.StopWalking();
         }
 
         //Un-jumping code
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && isActive)
         {
             if (jumps > 0)
             {
@@ -59,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Jumping code
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isActive)
         {
             if (hasntJumped)
             {
@@ -74,10 +80,15 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumpedInAir = false;
                 --jumps;
+                sfxPlayer.PlaySFX("jump");
+                animator.SetInteger("Jumps", jumps);
             }
             else
             {
-                //Used all double jumps
+                animator.SetBool("Should Die", true);
+                //very slow fall
+                isActive = false;
+                lowJumpMultipler = 0.3f;
                 Explode();
             }
         }
@@ -87,6 +98,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isActive) {
+            speed = 0;
+        }
         rb.velocity = new Vector2(horiVelocity * speed, rb.velocity.y);
 
         //Jumping physics code
@@ -100,19 +114,14 @@ public class PlayerController : MonoBehaviour
         }
         //resets grounded state to false, overridden by OnCollisionEnter2D
         isGrounded = false;
-
-        if (!isActive)
-        {
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0;
-        }
-        print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+        //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
     }
 
     public void AddJump()
     {
-        jumps++;
+        if(jumps < 2)
+			jumps = 2;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -121,27 +130,26 @@ public class PlayerController : MonoBehaviour
         {
             hasntJumped = true;
             isGrounded = true;
+            if (pickups.Length > 0) {
+                foreach (GameObject p in pickups) {
+                    p.SetActive(true);
+                }
+            }
         }
     }
 
 
     void Explode()
     {
+        Camera.main.GetComponent<CameraController>().ZoomIn();
+        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         StartCoroutine(ExplodeCoroutine());
     }
 
     IEnumerator ExplodeCoroutine()
     {
-        //broken camera zoom in
-        //Camera.main.GetComponent<CameraController>().ZoomIn();
-
-        //broken slow down
-        //Time.timeScale = 0.2F;
-
-        yield return new WaitForSecondsRealtime(.25F);
-
-        //Time.timeScale = 1;
-
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
