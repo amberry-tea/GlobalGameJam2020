@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
       rb.velocity = new Vector2(horiVelocity * speed, rb.velocity.y);
       if (hasntJumped)
       {
-         if (Input.GetKeyDown(KeyCode.Space))
+         if (Input.GetKey(KeyCode.Space))
          {
             hasntJumped = false;
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
