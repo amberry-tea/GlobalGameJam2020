@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	private SfxPlayer sfxPlayer;
     private float horiVelocity = 0.0f;  // Horizontal Velocity. Set by player movement.
     public Animator animator;
+
     public float speed;
     public float jumpHeight;
     private bool hasntJumped;
@@ -99,6 +100,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
     }
 
+    public void AddJump() {
+        jumps++;
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         hasntJumped = true;
