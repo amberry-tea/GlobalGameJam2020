@@ -127,10 +127,14 @@ public class PlayerController : MonoBehaviour
     {
 		//broken camera zoom in
 		//Camera.main.GetComponent<CameraController>().ZoomIn();
+
 		//broken slow down
 		//Time.timeScale = 0.2F;
+		
         yield return new WaitForSecondsRealtime(.25F);
+
 		//Time.timeScale = 1;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 

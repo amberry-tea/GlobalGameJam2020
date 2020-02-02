@@ -7,7 +7,7 @@ public class BackgroundMover : MonoBehaviour
     private float length, startpos;
     private Camera cam;
     public float parallaxEffect;
-    public bool repeats;
+    public bool noRepeat;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,6 @@ public class BackgroundMover : MonoBehaviour
         startpos = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
         cam = Camera.main;
-        repeats = true;
     }
 
     // Update is called once per frame
@@ -26,7 +25,7 @@ public class BackgroundMover : MonoBehaviour
 
         transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
 
-        if (repeats)
+        if (!noRepeat)
         {
             if (temp > startpos + length)
             {

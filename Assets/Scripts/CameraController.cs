@@ -13,15 +13,15 @@ public class CameraController : MonoBehaviour
         //offset = transform.position - player.transform.position;
     }
 
-    public void ZoomIn(){
-    	StartCoroutine(ZoomInCoroutine());
-	}
+    // public void ZoomIn(){
+    // 	StartCoroutine(ZoomInCoroutine());
+	// }
 
-	IEnumerator ZoomInCoroutine(){
-		while(zoom > .5){
-            zoom -= 0.05F;
-            yield return new WaitForEndOfFrame();
-        }
-	}
+	// IEnumerator ZoomInCoroutine(){
+	// 	while(zoom > .5){
+    //         zoom -= 0.05F;
+    //         yield return new WaitForEndOfFrame();
+    //     }
+	// }
 
 }
