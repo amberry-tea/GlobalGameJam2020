@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmolScript : MonoBehaviour
+public class TrackPlayer : MonoBehaviour
 {
     private GameObject player;
     private bool facingRight;
