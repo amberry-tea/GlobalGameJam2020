@@ -53,13 +53,13 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("Jumps", jumps);
         horiVelocity = Input.GetAxis("Horizontal");
 
-        if (Mathf.Abs(horiVelocity) > 0 && hasntJumped)
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 && hasntJumped)
         {
-            //sfxPlayer.PlaySFX("walk");
+            sfxPlayer.PlaySFX("walk");
         }
         else
         {
-            //sfxPlayer.StopWalking();
+            sfxPlayer.StopWalking();
         }
 
         //Un-jumping code
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
                 hasntJumpedInAir = false;
                 --jumps;
                 sfxPlayer.PlaySFX("jump");
+				sfxPlayer.PlaySFX("eyesmash");
                 animator.SetInteger("Jumps", jumps);
             }
             else
@@ -175,6 +176,10 @@ public class PlayerController : MonoBehaviour
         Camera.main.GetComponent<CameraController>().ZoomIn();
         //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         c = StartCoroutine(ExplodeCoroutine());
+		sfxPlayer.PlaySFX("death-explode");
+		
+		MusicPlayer music = FindObjectOfType<MusicPlayer>();
+		music.DeathPitch();
     }
 
     public void StopExplode() {
