@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpHeight;
     private bool hasntJumped;
+    private bool hasntJumpedInAir;
+    private bool isGrounded;
+    private int jumps;
 
     public float fallMultiplier;
     public float lowJumpMultipler;
@@ -19,6 +22,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
+        jumps = 2;
+        hasntJumpedInAir = true;
+        hasntJumped = true;
     }
 
     void Update()
@@ -26,19 +32,48 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("VertSpeed", rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
         horiVelocity = Input.GetAxis("Horizontal");
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (jumps > 0)
+            {
+                hasntJumpedInAir = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (hasntJumped)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+                hasntJumped = false;
+            }
+            else if (hasntJumpedInAir)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+                hasntJumpedInAir = false;
+                --jumps;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     void FixedUpdate()
     {
+        print(jumps);
         rb.velocity = new Vector2(horiVelocity * speed, rb.velocity.y);
-        if (hasntJumped)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                hasntJumped = false;
-                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-            }
-        }
+        // if (Input.GetKey(KeyCode.Space))
+        // {
+        //     if (hasntJumped)
+        //     {
+        //         //rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+        //     }
+
+        // }
+
 
         if (rb.velocity.y < 0)
         {
@@ -49,10 +84,14 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
         }
 
+        print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+
+        isGrounded = false;
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         hasntJumped = true;
+        isGrounded = true;
     }
 }
