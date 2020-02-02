@@ -244,8 +244,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987565777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.256, y: 12.532, z: 0}
-  m_LocalScale: {x: 23.64053, y: 23.256866, z: 26.206457}
+  m_LocalPosition: {x: 14.83, y: 7.48, z: 0}
+  m_LocalScale: {x: 16.07556, y: 15.81467, z: 17.82039}
   m_Children: []
   m_Father: {fileID: 180267828}
   m_RootOrder: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625779d10b1645c48bc3bc06ec773764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.9
+  parallaxEffect: 0.6
   noRepeat: 1
 --- !u!212 &987565780
 SpriteRenderer:
