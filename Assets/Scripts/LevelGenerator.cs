@@ -10,6 +10,8 @@ public class LevelGenerator : MonoBehaviour
     public float startX, startY;
     public bool isBackground;
     public ColorToPrefab[] colorMappings;
+    
+    private Color dark;
 
     // Awake is called once, before Start
     // Swapped to Awake so that everything can be referenced in the Start method of other objects
@@ -17,6 +19,9 @@ public class LevelGenerator : MonoBehaviour
     {
         blockSize = 0.32F;
         GenerateLevel();
+        if(isBackground){
+            //dark = new Color(1F, 1F, 1F, .2F);
+        }
     }
 
     void GenerateLevel()
@@ -59,12 +64,13 @@ public class LevelGenerator : MonoBehaviour
                 }
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
                 GameObject toSet = colorMapping.prefab;
+                GameObject block = Instantiate(toSet, position, Quaternion.identity, transform);
                 if (isBackground)
                 {
-                    toSet.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
-                    Destroy(toSet.GetComponent<BoxCollider2D>());
+                    block.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+                    DestroyImmediate(block.GetComponent<BoxCollider2D>(), true);
+                    block.GetComponent<SpriteRenderer>().color = dark;
                 }
-                Instantiate(toSet, position, Quaternion.identity, transform);
             }
         }
     }
