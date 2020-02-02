@@ -17,6 +17,10 @@ public class TrackPlayer : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (player == null) {
+            player = GameObject.FindWithTag("Player");
+        }
+
         if (player.transform.position.x < this.transform.position.x) {
             facingRight = false;
         } else {
