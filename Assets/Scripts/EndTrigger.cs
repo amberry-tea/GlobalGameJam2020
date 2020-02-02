@@ -99,6 +99,9 @@ public class EndTrigger : MonoBehaviour
 		Vector3 startPos = camera.transform.position;
 		Vector3 endPos = new Vector3(0,0,0); //Final Position Goes Here
 		
+		MusicPlayer musicPlayer = FindObjectOfType<MusicPlayer>();
+		musicPlayer.FadeOutMusic(1.5f);
+		
 		while(lerpAlpha < cameraMoveTime)
 		{
 			camera.transform.position = Vector3.Lerp(startPos, endPos, (lerpAlpha / cameraMoveTime));
