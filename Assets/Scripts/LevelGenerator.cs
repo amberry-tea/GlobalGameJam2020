@@ -10,18 +10,19 @@ public class LevelGenerator : MonoBehaviour
     public float startX, startY;
     public bool isBackground;
     public ColorToPrefab[] colorMappings;
-    
+
     private Color dark;
 
     // Awake is called once, before Start
     // Swapped to Awake so that everything can be referenced in the Start method of other objects
     void Awake()
     {
+        if (isBackground)
+        {
+            dark = new Color(1F, 1F, 1F);
+        }
         blockSize = 0.32F;
         GenerateLevel();
-        if(isBackground){
-            //dark = new Color(1F, 1F, 1F, .2F);
-        }
     }
 
     void GenerateLevel()
