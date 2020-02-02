@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpHeight;
     private bool hasntJumped;
+
     private bool hasntJumpedInAir;
     private bool isGrounded;
     private bool isActive;
@@ -38,6 +39,9 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat("VertSpeed", rb.velocity.y);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+        animator.SetBool("Jumped Once", hasntJumped);
+        animator.SetBool("Double Jumped", hasntJumpedInAir);
+        animator.SetInteger("Jumps", jumps);
         horiVelocity = Input.GetAxis("Horizontal");
 
         if (Mathf.Abs(horiVelocity) > 0 && hasntJumped)
@@ -74,6 +78,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 hasntJumpedInAir = false;
                 --jumps;
+                animator.SetInteger("Jumps", jumps);
             }
             else
             {
@@ -111,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddJump() {
         jumps++;
+        animator.SetInteger("Jumps", jumps);
     }
     void OnCollisionEnter2D(Collision2D other)
     {
