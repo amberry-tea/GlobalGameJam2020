@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour
     }
 
 	void Explode(){
+		MusicPlayer music = FindObjectOfType<MusicPlayer>();
+		music.DeathPitch();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 	}
 }

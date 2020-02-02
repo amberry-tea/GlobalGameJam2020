@@ -22,12 +22,35 @@ public class MusicPlayer : MonoBehaviour
 	private string restartMusicName;
 	private AudioClip currentMusic;
 	private AudioClip currentMusicLoop;
+	private static MusicPlayer musicInstance;
+	
+	// Create MusicPlayer instance.
+	public static MusicPlayer instance
+	{
+		get
+		{
+			if(musicInstance == null)
+			{
+				musicInstance = FindObjectOfType<MusicPlayer>();
+				DontDestroyOnLoad(musicInstance.gameObject);
+			}
+			return musicInstance;
+		}
+	}
 	
 	// Start is called before the first frame update
 	void Start()
 	{
-		// Remove this if this won't be a Singleton
-		DontDestroyOnLoad(gameObject);
+		// If there is no MusicPlayer instance, this is the Singleton.
+		if(musicInstance == null)
+		{
+			musicInstance = this;
+		}
+		// If this is not the first MusicPlayer instance, go commit die.
+		else if(this != musicInstance)
+		{
+			Destroy(this.gameObject);
+		}
 		
 		if(autoStart)
 		{
@@ -205,38 +228,13 @@ public class MusicPlayer : MonoBehaviour
 	
 	public IEnumerator ChangePitch(float pitchLength, float newPitch)
 	{
-		if(isPlaying == true)
-		{
-			float startPitch = 1;
+		float startPitch = 1;
 			
-			if(musicSources[0].isPlaying == true)
-			{
-				// If the intro is still playing, get the volume of the intro's Audio Source.
-				startPitch = musicSources[0].pitch;
-				
-				// Fade the volume to the target volume. Fade both Audio Sources, in case the intro finishes before we fade out.
-				while(musicSources[0].pitch > newPitch)
-				{
-					musicSources[0].pitch -= startPitch * Time.deltaTime / pitchLength;
-					musicSources[1].pitch -= startPitch * Time.deltaTime / pitchLength;
-					yield return null;
-				}
-				
-			}
-			else if(musicSources[1].isPlaying == true)
-			{
-				// If the loop playing, get the volume of the loop's Audio Source.
-				startPitch = musicSources[1].pitch;
-				
-				// Fade the volume to the target volume.
-				while(musicSources[1].pitch > newPitch)
-				{
-					musicSources[1].pitch -= startPitch * Time.deltaTime / pitchLength;
-					yield return null;
-				}
-			}
+		while(musicSources[0].pitch > newPitch)
+		{
+			musicSources[0].pitch -= startPitch * Time.deltaTime / pitchLength;
+			musicSources[1].pitch -= startPitch * Time.deltaTime / pitchLength;
+			yield return null;
 		}
-		else
-			print("Music Player Message: There is no music to change pitch.");
 	}
 }
