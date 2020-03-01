@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private bool hasntJumped;
 
     private bool hasntJumpedInAir;
-    private bool isGrounded;
     public bool isActive;
     private bool onWall;
     private int jumps;
@@ -115,6 +114,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultipler - 1) * Time.deltaTime;
         }
 
+        //ON WALL CODE
         if (onWall)
         {
             rb.AddForce(Vector3.down);
@@ -127,9 +127,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
         }
 
-        //resets grounded state to false, overridden by OnCollisionEnter2D
-        isGrounded = false;
-        //print("Jumps: " + jumps + " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
+        //Debug for status of jump & double jump booleans
+        //print("Jumps: " + jumps + " IsGrounded(): " + IsGrounded() +  " Hasn't Jumped: " + hasntJumped + " Hasn't Jumped In Air: " + hasntJumpedInAir);
 
     }
 
@@ -138,13 +137,25 @@ public class PlayerController : MonoBehaviour
         jumps = 2;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private bool IsGrounded()
     {
-        BoxCollider2D col = this.gameObject.GetComponent<BoxCollider2D>();
-        if ((other.GetContact(0).point.y > other.gameObject.transform.position.y + other.gameObject.GetComponent<SpriteRenderer>().size.y - .2f))
+        //checks if anything is below the character using a Circle Cast.
+        return Physics2D.CircleCast(gameObject.transform.position, 0.18f, Vector2.down, 1f, 9, 0, 0);
+
+        /* Debug line drawing tools:
+         * 
+         * Debug.DrawLine(gameObject.transform.position,
+            new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.7f));
+            Debug.DrawLine(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1f), new Vector3(gameObject.transform.position.x + 0.18f, gameObject.transform.position.y - 1f));
+        */
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        //this code should be moved to the jump function for optomization
+        if (IsGrounded())
         {
             hasntJumped = true;
-            isGrounded = true;
             onWall = false;
             if (pickups.Length > 0)
             {
@@ -158,8 +169,9 @@ public class PlayerController : MonoBehaviour
         {
             onWall = true;
             hasntJumped = false;
-            isGrounded = false;
         }
+        
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -178,11 +190,6 @@ public class PlayerController : MonoBehaviour
             checkpointPos.y = this.gameObject.transform.position.y;
         }
     }
-
-    int JumpType(){
-        return 0;
-    }
-
 
     Coroutine c;
     void Explode()

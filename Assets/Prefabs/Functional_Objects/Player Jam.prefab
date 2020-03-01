@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 1499946611561138792}
   - component: {fileID: 6066457012433862856}
   - component: {fileID: 1253296809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player Jam
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 1703266777733160494}
   - component: {fileID: 1032503299}
   - component: {fileID: 1298666502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

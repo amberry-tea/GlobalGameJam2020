@@ -18,10 +18,16 @@ public class LevelGenerator : MonoBehaviour
     // Swapped to Awake so that everything can be referenced in the Start method of other objects
     void Awake()
     {
+        //Add .5 to the offset to allign with the tile grid
+        startX += .5f;
+        startY += .5f;
+
+        //Changes the color of the objects if its in the background.
         if (isBackground)
         {
             dark = new Color(1F, 1F, 1F);
         }
+                
         blockSize = 1F;
         GenerateLevel();
     }
@@ -54,15 +60,15 @@ public class LevelGenerator : MonoBehaviour
                 float yOffset = 0;
                 if (pixelColor.Equals(Color.red))
                 { //if the object is Smol_House_Populated
-                    yOffset = 0.46f;
+                    yOffset += 1.46f;
                 }
                 else if (pixelColor.Equals(Color.black))
                 { //if the object is James
-                    yOffset = -0.05f;
+                    yOffset += -0.05f;
                 }
                 else if (pixelColor.Equals(new Color(0xc3 / (float)0xff, 0xc3 / (float)0xff, 0xc3 / (float)0xff)))
                 { // if the object is Smol
-                    yOffset = -0.05f;
+                    yOffset += -0.05f;
                 }
 
                 Vector2 position = new Vector2(x * blockSize + startX, y * blockSize + startY + yOffset);
